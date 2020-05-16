@@ -1,11 +1,14 @@
 $(document).ready(function () {
   amenity_id = [];
-  $('input[data-id="amenity.id"]').click(function () {
-    if($(this).prop("checked") == true) {
-      amenity_id.push($(this).val());
-    } else if($(this).prop("checked") == false) {
-      amenity_id.splice(amenity_id.indexOf($(this).val(), 1))
+  amenity_name = [];
+  $('input[type="checkbox"]').click(function () {
+    if ($(this).is(":checked")) {
+      amenity_id.push($(this).attr('data-id'));
+      amenity_name.push($(this).attr('data-name'));
+    } else {
+      amenity_id.splice(amenity_id.indexOf($(this).attr('data-id'), 1));
+      amenity_name.splice(amenity_id.indexOf($(this).attr('data-name'), 1));
     }
-  })
-  $('.amenities h4').text('hola');
-})
+    $('.amenities h4').text(amenity_name.join(', '));
+  });
+});
